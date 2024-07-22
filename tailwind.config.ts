@@ -1,13 +1,19 @@
-import type { Config } from "tailwindcss"
+import { withUt } from "uploadthing/tw";
+import type { Config } from "tailwindcss";
 
-const config = {
-  darkMode: ["class"],
+// Exporting configuration with modifications
+module.exports = withUt({
+  // Configuring dark mode
+  darkMode: "class",
+
+  // Specifying content paths
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+    "./src/**/*.{ts,tsx,mdx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -75,6 +81,8 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config,
+)
 
-export default config
+
+
