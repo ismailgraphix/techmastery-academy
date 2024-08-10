@@ -3,6 +3,7 @@ import { auth } from "@clerk/nextjs/server";
 import { Course, Chapter, UserProgress } from "@prisma/client"
 import { redirect } from "next/navigation";
 import { CourseSidebarItem } from "./course-sidebar-item";
+import { CourseProgress } from "@/components/course-progress";
 
 interface CourseSidebarProps{
     course: Course & {
@@ -37,6 +38,13 @@ export const CourseSidebar = async ({
                 <h1 className="font-semibold"> 
                     {course.title}
                 </h1>
+                {purchase && (
+                    <div className="mt-10">
+                        <CourseProgress
+                        variant="success"
+                        value={progressCount} />
+                    </div>
+                )}
                 {/* Check purchase and add progress */}
             </div>
             <div className="flex flex-col w-full">
