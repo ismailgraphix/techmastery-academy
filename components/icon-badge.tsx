@@ -23,7 +23,7 @@ const backgroundVariants = cva(
     }
 );
 
-// Define icon variants
+// Define icon variants with renamed size property
 const iconVariants = cva(
     "", // Additional classes can be added here if needed
     {
@@ -32,13 +32,13 @@ const iconVariants = cva(
                 default: "text-sky-700",
                 success: "text-emerald-700",
             },
-            size: {
+            iconSize: {
                 default: "h-8 w-8"
             },
         },
         defaultVariants: {
             variant: "default",
-            size: "default",
+            iconSize: "default",
         }
     }
 );
@@ -47,7 +47,7 @@ const iconVariants = cva(
 type BackgroundVariantsProps = VariantProps<typeof backgroundVariants>;
 type IconVariantsProps = VariantProps<typeof iconVariants>;
 
-// Define props interface for IconBadge component
+// Define props interface for IconBadge component with resolved conflict
 interface IconBadgeProps extends BackgroundVariantsProps, IconVariantsProps {
     icon: LucideIcon;
 }
@@ -57,12 +57,13 @@ export const IconBadge = ({
     icon: Icon,
     variant,
     size,
+    iconSize,
 }: IconBadgeProps) => {
     return (
         <div className={cn(backgroundVariants({ variant, size }))}>
-            <Icon className={cn(iconVariants({ variant, size }))} />
+            <Icon className={cn(iconVariants({ variant, iconSize }))} />
         </div>
     );
 };
 
-export default IconBadge; // Exporting default for the component
+export default IconBadge;
