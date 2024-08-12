@@ -26,7 +26,7 @@ export async function POST (
         where: {
             userId_courseId: {
                 userId: user.id,
-                courseId:course?.id
+                courseId:course?.id || ""
             }
         }
     });
